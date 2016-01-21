@@ -1,4 +1,4 @@
-Maven - сборщик проектов в xml формате.
+Maven - фреймоврк, сборщик проектов в xml формате от Apache;
 Декларативная модель сборки проектов.
 В Maven жесткая структура каталогов в отличии от Ant.
 Антовский билдинг это все печально.
@@ -51,24 +51,48 @@ http://maven.apache.org
 	- readme.txt
 	- src (все что должно создаваться в maven проектах должно содержаться в src)
 	- src/site 
-	- src/main
-	- src/test (без unit тестов прокт не комплируется)
-
-
-
-
-
-
-
-
-
-
-
+	- src/main/java - исходный код проекта, если положить куда-то не туда, то ничего не скомпилится.
+	- src/test (без unit тестов проект не комплируется)
 
 	
-	
-	
-Минимальный проектный файл  Maven
+Минимальный проектный файл Maven (helloworld.pom)
+helloworld/pom.xml
+<project>
+	<groupId>eu.it-sudparis</groupId>
+	<artefactId>helloworld</artifactId>
+	<packaging>pom</packaging>
+	<version>0.1-SNAPSHOT</version>
+	<name>Hello world example</name>
+	<modules>
+		<module>first-sub-module</module>
+		<module>second-sub-module</module>
+	</modules>
+	...
+</project>
+
+- mvn install copies pom.xml to ~/.m2/repository/helloworld/pom.xml
+
+groupid всегда зависит от parent
+
+описание dependency
+<dependencies>
+	<dependency>
+		<groupId>junit</groupid>
+		<artefactid>junit<artefactid>
+		<version>4.0</version>
+		<scope>test</scope>
+	</dependency>
+</dependencies>
+
+Доступные scope:
+-compile - всегда
+-provided - не нужен
+-runtime - комплируется и тесты без него, но в runtime нужен
+-test - означает artefactid уже в systemPath
+-system
+
+
+
 
 
 
